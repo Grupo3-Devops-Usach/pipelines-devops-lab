@@ -3,7 +3,6 @@ def call(){
         agent any
 
         parameters {
-            choice(name: 'CHOICE', choices: ['maven', 'gradle'], description: 'Herramienta de construccion')
             string(name: 'STAGE', defaultValue: '', description: 'Stages a ejecutar')
         }
 
@@ -12,6 +11,12 @@ def call(){
                 steps {
                     script{
                         env.STG_NAME = ''
+                        env.BUILD_TOOL = ''
+                        env.BRANCH_TYPE = ''
+
+                        util.baseOS()
+                        env.BUILD_TOOL = util.buildTool()
+                        
 
                         //Validar tipo de rama a ejecutar develop, feature, release
                         //develop, feature deben ejecutar pipeline IC
