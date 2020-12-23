@@ -31,7 +31,7 @@ def buildTool(){
 def pipelineType(branch_name){
     def pipeline_type = ''
 
-    if(branch_name ==~ /develop/ || branch_name ==~ /feature*/){
+    if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
         pipeline_type = 'IC'
     }
 
