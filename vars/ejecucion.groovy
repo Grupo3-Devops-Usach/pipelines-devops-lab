@@ -25,10 +25,10 @@ def call(){
         }
         post {
             success {
-                slackSend color: 'good', message: "Build Success: [User Name][${env.JOB_NAME}][${params.CHOICE}] Ejecución exitosa.", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
+                slackSend color: 'good', message: "[Grupo 3][Pipeline ][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
             }
             failure {
-                slackSend color: 'danger', message: "Build Failure: [User Name][${env.JOB_NAME}][${params.CHOICE}] Ejecución fallida en stage [${env.STG_NAME}].", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
+                slackSend color: 'danger', message: "[Grupo 3][Pipeline ][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: No Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
             }
         }
     }
