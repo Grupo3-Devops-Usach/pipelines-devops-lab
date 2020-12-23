@@ -28,6 +28,12 @@ def buildTool(){
     return tool
 }
 
-def branchType(){
-    def branch = ''
+def branchType(branch_name){
+    def branch_type = ''
+
+    if(branch_name ==~ /develop/ || branch_name ==~ /feature*/){
+        branch = 'IC'
+    }
+
+    return branch_type
 }

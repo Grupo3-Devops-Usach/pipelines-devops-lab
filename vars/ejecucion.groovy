@@ -16,6 +16,7 @@ def call(){
 
                         util.baseOS()
                         env.BUILD_TOOL = util.buildTool()
+                        env.BRANCH_TYPE = util.branchType(env.BRANCH_NAME)
                         
 
                         //Validar tipo de rama a ejecutar develop, feature, release
@@ -30,10 +31,10 @@ def call(){
         }
         post {
             success {
-                slackSend color: 'good', message: "[Grupo 3][Pipeline ][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
+                slackSend color: 'good', message: "[Grupo 3][Pipeline ${env.BRANCH_TYPE}][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
             }
             failure {
-                slackSend color: 'danger', message: "[Grupo 3][Pipeline ][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: No Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
+                slackSend color: 'danger', message: "[Grupo 3][Pipeline ${env.BRANCH_TYPE}][Rama: ${env.BRANCH_NAME}][Stage: ][Resultado: No Ok]", teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack-token-diplomado'
             }
         }
     }
