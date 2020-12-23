@@ -19,7 +19,7 @@ def buildTool(){
         tool = 'GRADLE';
     }
     else {
-        def file = new File("pom.xml")
+        file = new File("pom.xml")
         tool = 'MAVEN';
     }
 
