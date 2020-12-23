@@ -35,7 +35,7 @@ def pipelineType(branch_name){
         pipeline_type = 'IC'
     }
 
-    println "Pipeline Type [${tool}]"
+    println "Pipeline Type [${pipeline_type}]"
 
     return pipeline_type
 }
