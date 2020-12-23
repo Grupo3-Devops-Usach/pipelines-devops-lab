@@ -28,12 +28,14 @@ def buildTool(){
     return tool
 }
 
-def branchType(branch_name){
-    def branch_type = ''
+def pipelineType(branch_name){
+    def pipeline_type = ''
 
     if(branch_name ==~ /develop/ || branch_name ==~ /feature*/){
-        branch = 'IC'
+        pipeline_type = 'IC'
     }
 
-    return branch_type
+    println "Pipeline Type [${tool}]"
+
+    return pipeline_type
 }
