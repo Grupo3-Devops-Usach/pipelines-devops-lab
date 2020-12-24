@@ -20,7 +20,7 @@ def call(){
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
                         env.VALID_STAGES = util.validStages(env.PIPELINE_TYPE)
 
-                        util.validateStages(env.VALID_STAGES, parameters.STAGE)
+                        util.validateStages(env.VALID_STAGES, params.STAGE)
                         
 
                         //Validar tipo de rama a ejecutar develop, feature, release
