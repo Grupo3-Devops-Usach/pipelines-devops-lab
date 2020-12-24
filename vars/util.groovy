@@ -27,7 +27,7 @@ def validateStages(valid_stages, stages){
 
         for(String value : stage_list){
             if (!valid_stages.contains(value.trim())){
-                env.STG_NAME = "Stage no valido: ${value}"
+                env.STG_NAME = "${value} (no valido)"
                 error "Stage no valido: ${value}"
             }
         }
