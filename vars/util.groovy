@@ -34,7 +34,7 @@ def buildTool(){
     def file = new File("build.gradle")
     
     if (file.exists()){
-        tool = Constants,GRADLE;
+        tool = Constants.GRADLE;
     }
     else {
         file = new File("pom.xml")
