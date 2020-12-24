@@ -21,7 +21,7 @@ def validateStages(valid_stages, stages){
     if(stages.trim() == ''){
         println "Stages a ejecutar [TODOS]"
     }else{
-        println "Stages a ejecutar [{$stages}]"
+        println "Stages a ejecutar [${stages}]"
 
         def stage_list = stages.split(';');
 
