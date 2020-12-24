@@ -1,3 +1,5 @@
+import com.util.Constants
+
 def validStages(pipeline_type) {
     def stages_list = ['build', 'test', 'jar', 'sonar', 'run', 'testing', 'nexus']
 
