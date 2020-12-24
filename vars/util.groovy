@@ -1,4 +1,5 @@
 final IC = 'IC'
+final RELEASE = 'RELEASE'
 
 def validStages(pipeline_type) {
     def stages_list = ['build', 'test', 'jar', 'sonar', 'run', 'testing', 'nexus']
@@ -49,9 +50,9 @@ def pipelineType(branch_name){
     def pipeline_type = ''
 
     if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
-        pipeline_type = 'IC'
+        pipeline_type = IC
     } else if(branch_name ==~ /release-v{\d*}-{\d*}-{\d*}/){
-        pipeline_type = 'RELEASE'
+        pipeline_type = RELEASE
     }
 
     println "Pipeline Type [${pipeline_type}]"
