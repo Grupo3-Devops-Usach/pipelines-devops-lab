@@ -1,18 +1,19 @@
 import com.util.Constants
 
 def validStages(pipeline_type) {
-    def stages_list = ['build', 'test', 'jar', 'sonar', 'run', 'testing', 'nexus']
+    def valid_stages
 
     switch(pipeline_type) {
-        case 'IC':
-            
+        case Constants.IC:
+            valid_stages = Constants.IC_STAGES
             break
-        case 'RELEASE':
-            
+        case Constants.RELEASE:
+            valid_stages = Constants.IC_STAGES
             break
     }
 
-    return stages_list
+    println "Valid Stages: ${valid_stages}"
+    return valid_stages
 }
 
 def baseOS(){
@@ -33,11 +34,11 @@ def buildTool(){
     def file = new File("build.gradle")
     
     if (file.exists()){
-        tool = 'GRADLE';
+        tool = Constants,GRADLE;
     }
     else {
         file = new File("pom.xml")
-        tool = 'MAVEN';
+        tool = Constants.MAVEN;
     }
 
     println "Build Tool [${tool}]"
@@ -51,7 +52,7 @@ def pipelineType(branch_name){
     if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
         pipeline_type = Constants.IC
     } else if(branch_name ==~ /release-v{\d*}-{\d*}-{\d*}/){
-        pipeline_type = 'RELEASE'
+        pipeline_type = Constants.RELEASE
     }
 
     println "Pipeline Type [${pipeline_type}]"

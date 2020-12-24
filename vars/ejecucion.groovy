@@ -17,6 +17,7 @@ def call(){
                         util.baseOS()
                         env.BUILD_TOOL = util.buildTool()
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
+                        util.validStages(env.PIPELINE_TYPE)
                         
 
                         //Validar tipo de rama a ejecutar develop, feature, release
