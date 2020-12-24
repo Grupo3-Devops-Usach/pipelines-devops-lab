@@ -16,6 +16,22 @@ def validStages(pipeline_type) {
     return valid_stages
 }
 
+def validStages(valid_stages, stages){
+    if(stages.trim() == ''){
+        println "Stages a ejecutar [TODOS]"
+    }else{
+        println "Stages a ejecutar [{$stages}]"
+
+        def stage_list = stages.split(';');
+
+        for(String value : stage_list){
+            if (!valid_stages.contains(value.trim())){
+                env.STG_NAME = "Stage no valido: ${value}"
+                error "Stage no valido"
+            }
+        }
+}
+
 def baseOS(){
     def os = ''
 
