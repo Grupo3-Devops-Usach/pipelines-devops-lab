@@ -1,6 +1,6 @@
 package com.util
 
 class Constants {
-    final IC = 'IC'
-    final RELEASE = 'RELEASE'
+    public static final String IC = 'IC'
+    public static final String RELEASE = 'RELEASE'
 }
