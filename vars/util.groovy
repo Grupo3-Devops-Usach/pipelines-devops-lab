@@ -16,7 +16,7 @@ def validStages(pipeline_type) {
     return valid_stages
 }
 
-def validateStages(String[] valid_stages, stages){
+def validateStages(valid_stages  as String[], stages  as String[]){
     println ">>>Valid Stages: ${valid_stages}"
 
     if(stages.trim() == ''){
