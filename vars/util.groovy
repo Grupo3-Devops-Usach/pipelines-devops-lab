@@ -17,6 +17,7 @@ def validStages(pipeline_type) {
 }
 
 def validStages(valid_stages, stages){
+    
     if(stages.trim() == ''){
         println "Stages a ejecutar [TODOS]"
     }else{
@@ -30,6 +31,7 @@ def validStages(valid_stages, stages){
                 error "Stage no valido"
             }
         }
+    }
 }
 
 def baseOS(){
