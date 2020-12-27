@@ -86,3 +86,7 @@ def isDevelopBranch(branch_name){
         return false
     }
 }
+
+def getRepoName(url){
+
+}
