@@ -14,16 +14,17 @@ def call(){
                         env.BUILD_TOOL = ''
                         env.PIPELINE_TYPE = ''
                         env.VALID_STAGES = ''
+                        env.URL_REPO = ''
 
                         util.baseOS()
                         env.BUILD_TOOL = util.buildTool()
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
                         env.VALID_STAGES = util.validStages(env.PIPELINE_TYPE)
+                        env.URL_REPO = scm.getUserRemoteConfigs()[0].getUrl()
                         util.validateStages(params.STAGE)
 
                         println "Valid Stages: ${env.VALID_STAGES}" 
-                        println scm.getUserRemoteConfigs()[0].getUrl().split("/")[-1]
-
+                        
                         pipelines.execute(params.STAGE)
                         
 
