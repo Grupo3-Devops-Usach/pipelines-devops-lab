@@ -45,6 +45,7 @@ def call(){
             break
         case Constants.STAGE_GITDIFF:
             stage(Constants.STAGE_GITDIFF){
+                bat "git fetch"
                 bat "git diff main..${env.BRANCH_NAME}"
             }
             break
