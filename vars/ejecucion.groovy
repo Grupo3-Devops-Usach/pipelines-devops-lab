@@ -24,7 +24,7 @@ def call(){
                         util.validateStages(params.STAGE)
 
                         println "Valid Stages: ${env.VALID_STAGES}" 
-                        print "${scm.GIT_COMMIT}"
+                        print "${env.GIT_COMMIT}"
                         
                         pipelines.execute(params.STAGE)
                         
