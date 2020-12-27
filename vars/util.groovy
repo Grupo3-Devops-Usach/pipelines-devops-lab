@@ -89,6 +89,7 @@ def isDevelopBranch(branch_name){
 
 def getRepoName(url){
     def repoNameGit = url.split("/")[-1]
+    println repoNameGit
     def repoName = repoNameGit.split(".")[0]
 
     return repoName
