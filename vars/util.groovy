@@ -25,7 +25,7 @@ def validateStages(valid_stages, stages){
 
         def stage_list = stages.split(Constants.SPLIT_SYMBOL);
 
-        for(String value : stage_list){
+        for(String value in stage_list){
             if (!valid_stages.contains(value.trim())){
                 env.STG_NAME = "${value} (no valido)"
                 error "Stage no valido: ${value}"
