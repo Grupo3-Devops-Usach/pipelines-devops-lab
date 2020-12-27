@@ -45,8 +45,8 @@ def call(){
             break
         case Constants.STAGE_GITDIFF:
             stage(Constants.STAGE_GITDIFF){
-                bat "git checkout main"
-                bat "git diff main ${env.BRANCH_NAME}"
+                bat "git config --add remote.origin.fetch +refs/heads/master:refs/remotes/origin/master"
+                bat "git diff --name-only origin/master..origin/${env.BRANCH_NAME}"
             }
             break
         case Constants.STAGE_NEXUSDOWNLOAD:
