@@ -8,7 +8,7 @@ def validStages(pipeline_type) {
             valid_stages = Constants.IC_STAGES
             break
         case Constants.RELEASE:
-            valid_stages = Constants.IC_STAGES
+            valid_stages = Constants.RELEASE_STAGES
             break
     }
 
