@@ -18,8 +18,8 @@ def call(){
                         util.baseOS()
                         env.BUILD_TOOL = util.buildTool()
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
-                        util.validStages(env.PIPELINE_TYPE)
-                        env.VALID_STAGES = util.validateStages(params.STAGE)
+                        env.VALID_STAGES = util.validStages(env.PIPELINE_TYPE)
+                        util.validateStages(params.STAGE)
 
                         println "Valid Stages: ${env.VALID_STAGES}" 
 
