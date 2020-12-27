@@ -10,6 +10,10 @@ def call(){
             stage(Constants.STAGE_UNITTEST){
                 bat 'mvnw.cmd clean test -e'
             }
+        case Constants.STAGE_JAR:
+            stage(Constants.STAGE_JAR){
+                bat 'mvnw.cmd clean package -e'
+            }
         default:
             break
     }
