@@ -6,6 +6,10 @@ def call(){
             stage(Constants.STAGE_COMPILE){
                 bat 'mvnw.cmd clean compile -e'
             }
+        case Constants.STAGE_UNITTEST:
+            stage(Constants.STAGE_UNITTEST){
+                bat 'mvnw.cmd clean test -e'
+            }
         default:
             break
     }
