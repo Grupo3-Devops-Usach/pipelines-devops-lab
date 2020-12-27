@@ -23,7 +23,7 @@ def validateStages(valid_stages, stages){
     }else{
         println "Stages a ejecutar [${stages}]"
 
-        def stage_list = stages.split(';');
+        def stage_list = stages.split(Constants.SPLIT_SYMBOL);
 
         for(String value : stage_list){
             if (!valid_stages.contains(value.trim())){

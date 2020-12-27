@@ -5,6 +5,7 @@ class Constants {
     public static final String RELEASE = 'RELEASE'
     public static final String MAVEN = 'MAVEN'
     public static final String GRADLE = 'GRADLE'
+    public static final String SPLIT_SYMBOL = ';'
 
     public static final String STAGE_COMPILE = 'compile'
     public static final String STAGE_UNITTEST = 'unitTest'
