@@ -58,9 +58,6 @@ def buildTool(){
     else {
         file = new File("pom.xml")
         tool = Constants.MAVEN;
-        def pom = readMavenPom file: 'pom.xml'
-        echo "${pom}"
-        echo "${scm}"
     }
 
     println "Build Tool [${tool}]"
