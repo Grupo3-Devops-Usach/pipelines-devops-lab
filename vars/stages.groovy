@@ -30,6 +30,10 @@ def call(){
                 nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'build\\DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.0']]]
             }
             break
+        case Constants.STAGE_GITCREATERELEASE:
+            stage(Constants.STAGE_NEXUSUPLOAD){
+            }
+            break
         default:
             break
     }

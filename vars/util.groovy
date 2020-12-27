@@ -78,3 +78,11 @@ def pipelineType(branch_name){
 
     return pipeline_type
 }
+
+def isDevelopBranch(branch_name){
+    if(branch_name ==~ /develop/)
+        return true
+    else{
+        return false
+    }
+}
