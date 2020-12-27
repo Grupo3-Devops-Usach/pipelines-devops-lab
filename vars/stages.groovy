@@ -22,6 +22,7 @@ def call(){
                 def repoName = util.getRepoName(env.URL_REPO)
                 def projectName = "${repoName}-${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 def scannerHome = tool 'sonar-scanner';
+
                 withSonarQubeEnv('sonar') {
                     bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${projectName} -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build -Dsonar.login=75a0e9b0613f563c0e69a23174cf79eb5d4d74c7"
                 }
@@ -36,6 +37,7 @@ def call(){
             if(util.isDevelopBranch(env.BRANCH_NAME)){
                 stage(Constants.STAGE_GITCREATERELEASE){
                     def releaseBranch = 'release-v1-0-0'
+
                     bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     bat "git push origin ${releaseBranch}"
                 }
@@ -43,6 +45,7 @@ def call(){
             break
         case Constants.STAGE_GITDIFF:
             stage(Constants.STAGE_GITDIFF){
+                bat "git diff main ${env.BRANCH_NAME}"
             }
             break
         case Constants.STAGE_NEXUSDOWNLOAD:
