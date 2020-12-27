@@ -32,7 +32,9 @@ def call(){
             }
             break
         case Constants.STAGE_GITCREATERELEASE:
-            stage(Constants.STAGE_GITCREATERELEASE){
+            if(util.isDevelopBranch(env.BRANCH_NAME)){
+                stage(Constants.STAGE_GITCREATERELEASE){
+                }
             }
             break
         default:
