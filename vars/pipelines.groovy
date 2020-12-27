@@ -6,9 +6,15 @@ def execute(stages_list){
 
     for(String value in valid_stages){
         if(stages_list.trim() == '' || iStages.contains(value)){
-            env.STG_NAME = value
-            println "Stage: ${value}"
-            stages.call()
+            if(Constants.STAGE_GITCREATERELEASE && util.isDevelopBranch(env.BRANCH_NAME)){
+                env.STG_NAME = value
+                println "Stage: ${value}"
+                stages.call()
+            }else{
+                env.STG_NAME = value
+                println "Stage: ${value}"
+                stages.call()
+            }
         }
     }
 }
