@@ -22,7 +22,7 @@ def call(){
 
                         util.validateStages(env.VALID_STAGES, params.STAGE)
 
-                        pipeline.execute(env.VALID_STAGES, params.STAGE)
+                        pipelines.execute(env.VALID_STAGES, params.STAGE)
                         
 
                         //Validar tipo de rama a ejecutar develop, feature, release
