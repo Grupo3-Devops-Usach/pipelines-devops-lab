@@ -58,6 +58,8 @@ def buildTool(){
     else {
         file = new File("pom.xml")
         tool = Constants.MAVEN;
+        def pom = readMavenPom file: 'pom.xml'
+        echo "${pom}"
     }
 
     println "Build Tool [${tool}]"
@@ -89,9 +91,7 @@ def isDevelopBranch(branch_name){
 
 def getRepoName(url){
     def repoNameGit = url.split("/")[-1]
-    println repoNameGit
     def repoName = repoNameGit.split("\\.")[0]
-    println repoName
 
     return repoName
 }
