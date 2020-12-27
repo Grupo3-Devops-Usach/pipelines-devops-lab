@@ -22,7 +22,7 @@ def call(){
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
                         env.VALID_STAGES = util.validStages(env.PIPELINE_TYPE)
                         env.URL_REPO = scm.getUserRemoteConfigs()[0].getUrl()
-                        emg.GIT_COMMIT_SHORT = env.GIT_COMMIT.substring(0,7)
+                        env.GIT_COMMIT_SHORT = env.GIT_COMMIT.substring(0,7)
                         util.validateStages(params.STAGE)
 
                         println "Valid Stages: ${env.VALID_STAGES}" 
