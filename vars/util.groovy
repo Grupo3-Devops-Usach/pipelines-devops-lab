@@ -60,6 +60,7 @@ def buildTool(){
         tool = Constants.MAVEN;
         def pom = readMavenPom file: 'pom.xml'
         echo "${pom}"
+        echo "${scm}"
     }
 
     println "Build Tool [${tool}]"

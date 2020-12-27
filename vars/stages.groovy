@@ -38,6 +38,34 @@ def call(){
                 }
             }
             break
+        case Constants.STAGE_GITDIFF:
+            stage(Constants.STAGE_GITDIFF){
+            }
+            break
+        case Constants.STAGE_NEXUSDOWNLOAD:
+            stage(Constants.STAGE_NEXUSDOWNLOAD){
+            }
+            break
+        case Constants.STAGE_RUN:
+            stage(Constants.STAGE_RUN){
+            }
+            break
+        case Constants.STAGE_TEST:
+            stage(Constants.STAGE_TEST){
+            }
+            break
+        case Constants.STAGE_GITMERGEMASTER:
+            stage(Constants.STAGE_GITMERGEMASTER){
+            }
+            break
+        case Constants.STAGE_GITMERGEDEVELOP:
+            stage(Constants.STAGE_GITMERGEDEVELOP){
+            }
+            break
+        case Constants.STAGE_GITTAGMASTER:
+            stage(Constants.STAGE_GITTAGMASTER){
+            }
+            break
         default:
             break
     }
