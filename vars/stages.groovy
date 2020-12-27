@@ -31,7 +31,7 @@ def call(){
             }
             break
         case Constants.STAGE_GITCREATERELEASE:
-            stage(Constants.STAGE_NEXUSUPLOAD){
+            stage(Constants.STAGE_GITCREATERELEASE){
             }
             break
         default:
