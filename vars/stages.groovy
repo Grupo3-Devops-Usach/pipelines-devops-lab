@@ -1,7 +1,7 @@
 import com.util.Constants
 
-def execute(stage){
-    switch(stage){
+def call(){
+    switch(env.STG_NAME){
         case Constants.STAGE_COMPILE:
             stage(Constants.STAGE_COMPILE){
                 bat 'mvnw.cmd clean compile -e'
@@ -10,3 +10,5 @@ def execute(stage){
             break
     }
 }
+
+return this;

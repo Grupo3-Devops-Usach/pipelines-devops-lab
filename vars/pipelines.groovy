@@ -7,7 +7,7 @@ def execute(stages_list){
     for(String value in valid_stages){
         if(stages_list.trim() == '' || iStages.contains(value)){
             env.STG_NAME = value
-            stages.execute(value)
+            stages.call()
         }
     }
 }
