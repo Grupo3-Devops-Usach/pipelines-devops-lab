@@ -22,6 +22,7 @@ def call(){
                         util.validateStages(params.STAGE)
 
                         println "Valid Stages: ${env.VALID_STAGES}" 
+                        println scm.getUserRemoteConfigs()[0].getUrl()
 
                         pipelines.execute(params.STAGE)
                         
