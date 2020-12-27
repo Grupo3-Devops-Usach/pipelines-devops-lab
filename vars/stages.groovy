@@ -46,6 +46,7 @@ def call(){
         case Constants.STAGE_GITDIFF:
             stage(Constants.STAGE_GITDIFF){
                 bat "git config --add remote.origin.fetch +refs/heads/master:refs/remotes/origin/master"
+                bat "git fetch --no-tags"
                 bat "git diff --name-only origin/master..origin/${env.BRANCH_NAME}"
             }
             break
