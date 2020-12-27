@@ -12,7 +12,6 @@ def validStages(pipeline_type) {
             break
     }
 
-    println "Valid Stages: ${valid_stages}"
     return valid_stages
 }
 

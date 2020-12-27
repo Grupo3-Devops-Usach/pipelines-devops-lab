@@ -19,7 +19,7 @@ def call(){
                         env.PIPELINE_TYPE = util.pipelineType(env.BRANCH_NAME)
                         util.validStages(env.PIPELINE_TYPE)
 
-                        util.validateStages(params.STAGE)
+                        println "Valid Stages: ${util.validateStages(params.STAGE)}" 
 
                         pipelines.execute(params.STAGE)
                         
