@@ -52,14 +52,19 @@ def call(){
             break
         case Constants.STAGE_NEXUSDOWNLOAD:
             stage(Constants.STAGE_NEXUSDOWNLOAD){
+                nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'build\\DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.0']]]
             }
             break
         case Constants.STAGE_RUN:
             stage(Constants.STAGE_RUN){
+                bat 'start mvnw.cmd spring-boot:run'
             }
             break
         case Constants.STAGE_TEST:
             stage(Constants.STAGE_TEST){
+                sleep 10
+                bat 'curl http://localhost:8082/rest/mscovid/estadoMundial'
+                bat 'curl http://localhost:8082/rest/mscovid/test?msg=testing'
             }
             break
         case Constants.STAGE_GITMERGEMASTER:
