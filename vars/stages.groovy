@@ -72,6 +72,10 @@ def call(){
             break
         case Constants.STAGE_GITMERGEDEVELOP:
             stage(Constants.STAGE_GITMERGEDEVELOP){
+                bat "git checkout develop"
+                bat "git fetch --all"
+                bat "git merge origin/${env.BRANCH_NAME}"
+                bat "git push origin develop"
             }
             break
         case Constants.STAGE_GITTAGMASTER:
