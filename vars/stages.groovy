@@ -67,7 +67,7 @@ def call(){
                 bat "git checkout main"
                 bat "git fetch --all"
                 bat "git merge origin/${env.BRANCH_NAME}"
-                bat "git push origin"
+                bat "git push origin main"
             }
             break
         case Constants.STAGE_GITMERGEDEVELOP:
