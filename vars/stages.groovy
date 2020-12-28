@@ -72,6 +72,7 @@ def call(){
             break
         case Constants.STAGE_GITMERGEDEVELOP:
             stage(Constants.STAGE_GITMERGEDEVELOP){
+                bat "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop"
                 bat "git checkout develop"
                 bat "git fetch --all"
                 bat "git merge origin/${env.BRANCH_NAME}"
