@@ -64,6 +64,7 @@ def call(){
             break
         case Constants.STAGE_GITMERGEMASTER:
             stage(Constants.STAGE_GITMERGEMASTER){
+                bat "git checkout main"
             }
             break
         case Constants.STAGE_GITMERGEDEVELOP:
