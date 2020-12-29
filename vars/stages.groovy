@@ -39,7 +39,7 @@ def call(){
                     String[] merge = bat (script: "git show -s --pretty=%%P", returnStdout: true).split("\\s")
                     def releaseBranch = 'release-v1-0-0'
 
-                    println merge.length
+                    println merge
                     //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     //bat "git push origin ${releaseBranch}"
                 }
