@@ -36,7 +36,7 @@ def call(){
         case Constants.STAGE_GITCREATERELEASE:
             if(util.isDevelopBranch(env.BRANCH_NAME)){
                 stage(Constants.STAGE_GITCREATERELEASE){
-                    String[] merge = bat (script: "git show -s --pretty=%%P", returnStdout: true).split("\\s")
+                    def merge = bat (script: "git show -s --pretty=%%P", returnStdout: true).split("\\s")
                     def releaseBranch = 'release-v1-0-0'
 
                     println merge
