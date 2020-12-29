@@ -42,7 +42,7 @@ def call(){
                     println env.GIT_COMMIT
                     println env.GIT_PREVIOUS_COMMIT
                     println env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
-                    println merge
+                    println merge.split("\s").length
                     //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     //bat "git push origin ${releaseBranch}"
                 }
