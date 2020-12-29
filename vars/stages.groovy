@@ -40,7 +40,7 @@ def call(){
                     def releaseBranch = 'release-v1-0-0'
 
                     println merge
-                    println merge.split("\\s")[0]
+                    println merge.split("\\s")[0].size()
                     //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     //bat "git push origin ${releaseBranch}"
                 }
