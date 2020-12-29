@@ -38,8 +38,11 @@ def call(){
                 stage(Constants.STAGE_GITCREATERELEASE){
                     def releaseBranch = 'release-v1-0-0'
 
-                    bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
-                    bat "git push origin ${releaseBranch}"
+                    println env.GIT_COMMIT
+                    println env.GIT_PREVIOUS_COMMIT
+                    println env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
+                    //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
+                    //bat "git push origin ${releaseBranch}"
                 }
             }
             break
@@ -57,7 +60,7 @@ def call(){
             break
         case Constants.STAGE_RUN:
             stage(Constants.STAGE_RUN){
-                bat 'start java -jar  DevOpsUsach2020-0.0.1.jar'
+                bat 'start java -jar DevOpsUsach2020-0.0.1.jar'
             }
             break
         case Constants.STAGE_TEST:
@@ -71,7 +74,7 @@ def call(){
             stage(Constants.STAGE_GITMERGEMASTER){
                 bat "git checkout main"
                 bat "git fetch --all"
-                bat "git merge origin/${env.BRANCH_NAME}"
+                bat "git merge origin/${env.BRANCH_NAME} --commit"
                 bat "git push origin main"
             }
             break
@@ -80,7 +83,7 @@ def call(){
                 bat "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop"
                 bat "git fetch --all"
                 bat "git checkout develop"
-                bat "git merge origin/${env.BRANCH_NAME}"
+                bat "git merge origin/${env.BRANCH_NAME} --commit"
                 bat "git push origin develop"
             }
             break
