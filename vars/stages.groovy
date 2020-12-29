@@ -36,13 +36,13 @@ def call(){
         case Constants.STAGE_GITCREATERELEASE:
             if(util.isDevelopBranch(env.BRANCH_NAME)){
                 stage(Constants.STAGE_GITCREATERELEASE){
-                    def merge = bat (script: "git show -s --pretty=%%P", returnStdout: true)
+                    def merge = bat (script: "git show -s --pretty=%%P", returnStdout: true).split("\\s")
                     def releaseBranch = 'release-v1-0-0'
 
                     println env.GIT_COMMIT
                     println env.GIT_PREVIOUS_COMMIT
                     println env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
-                    println merge.split("\\s").length
+                    println merge
                     //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     //bat "git push origin ${releaseBranch}"
                 }
