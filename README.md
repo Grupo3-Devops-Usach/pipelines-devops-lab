@@ -1,1 +1,1 @@
-# pipelines-devops-lab
+# pipeline-devops
