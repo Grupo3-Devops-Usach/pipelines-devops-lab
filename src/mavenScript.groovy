@@ -33,7 +33,7 @@ def call(String selectStage = '') {
 	  			}
 			}
 		}
-		break
+		break;
 
 		case 'nexus':
 	  stage('nexus') {
@@ -52,14 +52,14 @@ def call(String selectStage = '') {
 					packaging: 'jar',
 					version: '0.0.1']]];
 		}
-		break
+		break;
 
 		case 'gitcreaterelease':
 		stage('gitCreateRelease') {
 			env.stage = "${env.STAGE_NAME}";
 				sh ('git checkout release');
 		}
-		break
+		break;
 
 	}
 }

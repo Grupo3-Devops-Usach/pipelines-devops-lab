@@ -51,7 +51,7 @@ def call(String selectStage = '') {
 					packaging: 'jar',
 					version: '0.0.1']]]
 		}
-		break
+		break;
 
 		case 'gitcreaterelease':
 		stage('gitCreateRelease') {
@@ -66,7 +66,7 @@ def call(String selectStage = '') {
 			println merge;
 			println merge.split("\\s")[0].size();
 		}
-		break
+		break;
 
 	}
 }
