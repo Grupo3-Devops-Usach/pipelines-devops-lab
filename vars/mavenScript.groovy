@@ -3,7 +3,7 @@ def call(String selectStage = '') {
 	switch (selectStage) {
 
 		case 'compile':
-		stage('compile') {
+		stage('Compile') {
 			println 'Compile Maven';
 			env.stage = "${env.STAGE_NAME}";
 			sh 'mvn clean compile -e';
@@ -11,21 +11,21 @@ def call(String selectStage = '') {
 		break;
 
 		case 'unit':
-		stage('unit') {
+		stage('Unit') {
 			env.stage = "${env.STAGE_NAME}";
 			sh 'mvn clean test -e';
 		}
 		break;
 
 		case 'jar':
-		stage('jar') {
+		stage('Jar') {
 			env.stage = "${env.STAGE_NAME}";
 			sh 'mvn clean package -e';
 		}
 		break
 
 		case 'sonar':
-		stage('sonar') {
+		stage('Sonar') {
 			env.stage = "${env.STAGE_NAME}";
 			script {
 			withSonarQubeEnv('sonar') {
@@ -33,10 +33,23 @@ def call(String selectStage = '') {
 	  			}
 			}
 		}
-		break;
+		break
 
-		case 'nexus':
-	  stage('nexus') {
+		case 'runjar':
+		stage('RunJar') {
+					withMaven {
+							sh 'nohup bash mvnw spring-boot:run &'
+				}
+			}
+
+		case 'rest':
+		stage('Rest') {
+				sleep 20
+				sh 'curl http://localhost:8083/rest/mscovid/test?msg=testing'
+			}
+
+		case 'nexusci':
+	  stage('Nexus') {
 	 		env.stage = "${env.STAGE_NAME}";
 			nexusPublisher nexusInstanceId: 'nexus',
 			nexusRepositoryId: 'test-nexus',
@@ -52,14 +65,7 @@ def call(String selectStage = '') {
 					packaging: 'jar',
 					version: '0.0.1']]];
 		}
-		break;
-
-		case 'gitcreaterelease':
-		stage('gitCreateRelease') {
-			env.stage = "${env.STAGE_NAME}";
-				sh ('git checkout release');
-		}
-		break;
+		break
 
 	}
 }

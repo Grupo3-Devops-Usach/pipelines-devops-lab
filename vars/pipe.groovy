@@ -13,8 +13,8 @@ def call() {
 				defaultValue: '',
 				description:
 '''Selección de stage.
-Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease.
-Opciones para Maven: Compile; Unit; Jar; Sonar; Test; gitCreateRelease''')
+Opciones para Gradle: BuildAndTest; Sonar; RunJar; Rest; NexusCI.
+Opciones para Maven: Compile; Unit; Jar; Sonar; Rest; NexusCI''')
 			}
 
 stages {
@@ -27,6 +27,7 @@ stages {
 		steps {
 			script {
 
+
 				// Declaración de variables
 				tool = params.Herramienta;
 				env.user = sh (script: 'git config user.name', returnStdout: true).trim();
@@ -34,12 +35,13 @@ stages {
 				env.stage = '';
 				env.stagesString = params.Stage.toLowerCase();
 				String[] stagesList = env.stagesString.split(';');
+				sh 'env';
 
 				// Inicialización git.
 				sh ('git status');
 				sh ('git branch --all');
-				sh ('git checkout ' + env.GIT_BRANCH);
-				sh ('git pull --verbose');
+//				sh ('git checkout ' + env.GIT_BRANCH);
+//				sh ('git pull --verbose');
 //				sh ('git add .; git commit -m "Actualización"; git push origin ' + branch);
 				sh ('git status');
 				sh ('git config user.name');
@@ -56,9 +58,11 @@ stages {
 				println 'Herramienta seleccionada: ' + tool;
 				println 'Stages seleccionadas: ' + stagesList;
 				println 'Ejecutando en rama: ' + branch;
+				figlet tool;
 
 				// Integración continua ramas feature y develop.
 				if (branch.matches('(.*)feature(.*)') || (branch.matches('develop'))) {
+					figlet 'Continuous Integration';
 					println 'Inicio Integración Continua rama ' + branch;
 					if (tool == 'Gradle') {
 						continuousIntegration 'runGradle';
@@ -70,7 +74,8 @@ stages {
 				}
 
 				// Despliegue continuo rama release a partir de rama develop.
-				if (branch.matches('develop')) {
+				if (branch.matches('(.*)release(.*)')) {
+					figlet 'Continuous Release';
 					println 'Inicio despliegue continuo rama release';
 					continuousDeployment.call();
 //								sh ('git push --set-upstream origin ' + releaseBranch);

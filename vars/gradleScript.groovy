@@ -2,8 +2,8 @@ def call(String selectStage = '') {
 
 	switch (selectStage) {
 
-		case 'build':
-		stage('Build') {
+		case 'buildandtest':
+		stage('BuildAndTest') {
 			env.stage = "${env.STAGE_NAME}";
 			sh './gradlew clean build';
 		}
@@ -19,23 +19,23 @@ def call(String selectStage = '') {
 		}
 		break;
 
-		case 'run':
-		stage('run') {
+		case 'runjar':
+		stage('RunJar') {
 			env.stage = "${env.STAGE_NAME}";
 			sh 'nohup bash gradlew bootRun &';
 			sleep 20
 		}
 		break;
 
-		case 'test':
-		stage('test') {
+		case 'rest':
+		stage('Rest') {
 			env.stage = "${env.STAGE_NAME}";
 			sh 'curl -X GET http://localhost:8082/rest/mscovid/test?msg=testing';
 		}
 		break;
 
-		case 'nexus':
-		stage('nexus') {
+		case 'nexusci':
+		stage('NexusCI') {
 			env.stage = "${env.STAGE_NAME}"
 			nexusPublisher nexusInstanceId: 'nexus',
 			nexusRepositoryId: 'test-nexus',
@@ -51,22 +51,7 @@ def call(String selectStage = '') {
 					packaging: 'jar',
 					version: '0.0.1']]]
 		}
-		break;
-
-		case 'gitcreaterelease':
-		stage('gitCreateRelease') {
-			env.stage = "${env.STAGE_NAME}";
-			sh ('git checkout ' + env.releaseBranch);
-			env.releaseBranch = sh (script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim();
-			println 'Rama Release ' + releaseBranch + 'creada con éxito.';
-
-			def merge = sh (script: "git show -s --pretty=%%P", returnStdout: true);
-			def releaseBranch = 'release-v1-0-0';
-
-			println merge;
-			println merge.split("\\s")[0].size();
-		}
-		break;
+		break
 
 	}
 }

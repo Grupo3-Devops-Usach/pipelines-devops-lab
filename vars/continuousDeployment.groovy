@@ -10,22 +10,25 @@ def call() {
     sh ('git diff origin/main..origin/${env.BRANCH_NAME}');
   }
 
-  stage('nexusDownload') {
+  stage('downloadNexus') {
     sh ('start java -jar DevOpsUsach2020-0.0.1.jar');
   }
 
-  stage('run') {
+  stage('runDownloadedJar') {
     withMaven {
     sh ('nohup bash mvn spring-boot:run &');
       }
   }
 
-  stage('test') {
+  stage('rest') {
     sleep 20;
     sh ('curl http://localhost:8081/rest/mscovid/test?msg=testing');
     sh ('curl http://localhost:8082/rest/mscovid/estadoMundial');
   }
 
+  stage('nexusCD') {
+    
+  }
 
   stage('gitMergeMaster') {
     sh ('git checkout main');
