@@ -4,7 +4,8 @@ def call(){
     switch(env.STG_NAME){
         case Constants.STAGE_COMPILE:
             stage(Constants.STAGE_COMPILE){
-                bat 'mvnw.cmd clean compile -e'
+                "${env.BATCH_COMMAND} mvnw.cmd clean compile -e".execute()
+                //bat 'mvnw.cmd clean compile -e'
             }
             break
         case Constants.STAGE_UNITTEST:
@@ -40,7 +41,7 @@ def call(){
                     def releaseBranch = 'release-v1-0-0'
 
                     println merge
-                    println merge.split("\\s")[0].size()
+                    println merge.split("\\s").size()
                     //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
                     //bat "git push origin ${releaseBranch}"
                 }

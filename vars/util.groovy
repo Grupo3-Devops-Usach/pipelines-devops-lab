@@ -40,8 +40,10 @@ def baseOS(){
 
     if(isUnix()){
         os = 'Unix/Linux/MacOS'    
+        env.BATCH_COMMAND = 'sh'
     } else {
         os = 'Windows'
+        env.BATCH_COMMAND = 'bat'
     }
 
     println "Jenkins OS [${os}]"

@@ -16,6 +16,7 @@ def call(){
                         env.VALID_STAGES = ''
                         env.URL_REPO = ''
                         env.GIT_COMMIT_SHORT = ''
+                        env.BATCH_COMMAND = ''
 
                         util.baseOS()
                         env.BUILD_TOOL = util.buildTool()
