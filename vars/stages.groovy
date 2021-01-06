@@ -13,7 +13,11 @@ def call(){
             break
         case Constants.STAGE_UNITTEST:
             stage(Constants.STAGE_UNITTEST){
-                bat 'mvnw.cmd clean test -e'
+                if(env.BUILD_TOOL == Constants.MAVEN){
+                    "${env.BATCH_COMMAND}mvnw.cmd clean test -e".execute()
+                } else {
+                    "${env.BATCH_COMMAND} gradle test".execute()
+                }
             }
             break
         case Constants.STAGE_JAR:
