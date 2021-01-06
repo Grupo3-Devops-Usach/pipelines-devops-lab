@@ -9,7 +9,6 @@ def call(){
                 } else {
                     "${env.BATCH_COMMAND} gradle clean build".execute()
                 }
-                //bat 'mvnw.cmd clean compile -e'
             }
             break
         case Constants.STAGE_UNITTEST:
