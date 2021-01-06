@@ -5,7 +5,7 @@ def call(){
         case Constants.STAGE_COMPILE:
             stage(Constants.STAGE_COMPILE){
                 if(env.BUILD_TOOL == Constants.MAVEN){
-                    "${env.BATCH_COMMAND} mvnw.cmd clean compile -e".execute()
+                    "mvnw.cmd clean compile -e".execute()
                 } else {
                     "${env.BATCH_COMMAND} gradle clean build".execute()
                 }
