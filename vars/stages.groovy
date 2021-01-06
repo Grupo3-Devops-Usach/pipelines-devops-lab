@@ -14,9 +14,9 @@ def call(){
         case Constants.STAGE_UNITTEST:
             stage(Constants.STAGE_UNITTEST){
                 if(env.BUILD_TOOL == Constants.MAVEN){
-                    "${env.BATCH_COMMAND}mvnw.cmd clean test -e".execute()
+                    "${env.BATCH_COMMAND}" 'mvnw.cmd clean test -e'
                 } else {
-                    "${env.BATCH_COMMAND} gradle test".execute()
+                    "${env.BATCH_COMMAND}" 'gradle test'
                 }
             }
             break
