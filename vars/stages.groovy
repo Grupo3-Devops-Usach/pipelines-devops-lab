@@ -4,7 +4,11 @@ def call(){
     switch(env.STG_NAME){
         case Constants.STAGE_COMPILE:
             stage(Constants.STAGE_COMPILE){
-                "${env.BATCH_COMMAND} mvnw.cmd clean compile -e".execute()
+                if(env.BUILD_TOOL == Constants.MAVEN){
+                    "${env.BATCH_COMMAND} mvnw.cmd clean compile -e".execute()
+                } else {
+                    "${env.BATCH_COMMAND} gradle clean build".execute()
+                }
                 //bat 'mvnw.cmd clean compile -e'
             }
             break
