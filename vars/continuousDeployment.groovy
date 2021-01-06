@@ -1,52 +1,39 @@
-def call() {
+//Script de Despliegue Continuo continuousDeployment.groovy
 
+    def call() {
 
-  stage('gitDiff') {
-  	env.stage = "${env.STAGE_NAME}"
-    //sh (script: 'git diff', returnStdout: true);
-    sh ('git diff');
-    sh ('git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main');
-    sh ('git fetch --no-tags');
-    sh ('git diff origin/main..origin/${env.BRANCH_NAME}');
-  }
-
-  stage('downloadNexus') {
-    sh ('start java -jar DevOpsUsach2020-0.0.1.jar');
-  }
-
-  stage('runDownloadedJar') {
-    withMaven {
-    sh ('nohup bash mvn spring-boot:run &');
+      stage('downloadNexus') {
+        println 'Stage Nexus Download';
+        sh 'ls && curl -X GET -u admin:admin http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O';
       }
-  }
 
-  stage('rest') {
-    sleep 20;
-    sh ('curl http://localhost:8081/rest/mscovid/test?msg=testing');
-    sh ('curl http://localhost:8082/rest/mscovid/estadoMundial');
-  }
+      stage('runDownloadedJar') {
+        println 'Stage Run Downloaded Jar';
+        sh 'nohup bash java -jar ./DevOpsUsach2020-0.0.1.jar &';
+      }
 
-  stage('nexusCD') {
-    
-  }
+      stage('rest') {
+    //    sleep 20;
+        sh ('curl http://localhost:8083/rest/mscovid/test?msg=testing');
+      }
 
-  stage('gitMergeMaster') {
-    sh ('git checkout main');
-    sh ('git fetch --all');
-    sh ('git merge origin/${env.BRANCH_NAME} --commit');
-    sh ('git push origin main');
-  }
+      stage('nexusCD') {
+        println 'Subir a Nexus versión 1.0.0';
+        nexusPublisher nexusInstanceId: 'nexus',
+        nexusRepositoryId: 'test-nexus',
+        packages:
+          [[$class: 'MavenPackage',
+          mavenAssetList:
+            [[classifier: '',
+            extension: '',
+            filePath: 'DevOpsUsach2020-0.0.1.jar']],
+          mavenCoordinate:
+            [artifactId: 'DevOpsUsach2020',
+            groupId: 'com.devopsusach2020',
+            packaging: 'jar',
+            version: '1.0.0']]]
+      }
 
-  stage('gitMergeDevelop') {
-    sh "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop"
-    sh "git fetch --all"
-    sh "git checkout develop"
-    sh "git merge origin/${env.BRANCH_NAME} --commit"
-    sh "git push origin develop"
-  }
 
-  stage('gitTagMaster') {
-  }
-
-}
-return this;
+    }
+    return this;
