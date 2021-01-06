@@ -32,7 +32,7 @@ def call(){
                 def scannerHome = tool 'sonar-scanner';
 
                 withSonarQubeEnv('sonar') {
-                    bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${projectName} -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build -Dsonar.login=75a0e9b0613f563c0e69a23174cf79eb5d4d74c7"
+                    "${env.BATCH_COMMAND}" "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${projectName} -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build -Dsonar.login=75a0e9b0613f563c0e69a23174cf79eb5d4d74c7"
                 }
             }
             break
@@ -56,43 +56,43 @@ def call(){
             break
         case Constants.STAGE_GITDIFF:
             stage(Constants.STAGE_GITDIFF){
-                bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
-                bat "git fetch --no-tags"
-                bat "git diff origin/main..origin/${env.BRANCH_NAME}"
+                "${env.BATCH_COMMAND}" "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
+                "${env.BATCH_COMMAND}" "git fetch --no-tags"
+                "${env.BATCH_COMMAND}" "git diff origin/main..origin/${env.BRANCH_NAME}"
             }
             break
         case Constants.STAGE_NEXUSDOWNLOAD:
             stage(Constants.STAGE_NEXUSDOWNLOAD){
-                bat 'curl -X GET -u admin:P@ssw0rd2201 http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
+                "${env.BATCH_COMMAND}" 'curl -X GET -u admin:P@ssw0rd2201 http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
             }
             break
         case Constants.STAGE_RUN:
             stage(Constants.STAGE_RUN){
-                bat 'start java -jar DevOpsUsach2020-0.0.1.jar'
+                "${env.BATCH_COMMAND}" 'start java -jar DevOpsUsach2020-0.0.1.jar'
             }
             break
         case Constants.STAGE_TEST:
             stage(Constants.STAGE_TEST){
                 sleep 10
-                bat 'curl http://localhost:8082/rest/mscovid/estadoMundial'
-                bat 'curl http://localhost:8082/rest/mscovid/test?msg=testing'
+                "${env.BATCH_COMMAND}" 'curl http://localhost:8082/rest/mscovid/estadoMundial'
+                "${env.BATCH_COMMAND}" 'curl http://localhost:8082/rest/mscovid/test?msg=testing'
             }
             break
         case Constants.STAGE_GITMERGEMASTER:
             stage(Constants.STAGE_GITMERGEMASTER){
-                bat "git checkout main"
-                bat "git fetch --all"
-                bat "git merge origin/${env.BRANCH_NAME} --commit"
-                bat "git push origin main"
+                "${env.BATCH_COMMAND}" "git checkout main"
+                "${env.BATCH_COMMAND}" "git fetch --all"
+                "${env.BATCH_COMMAND}" "git merge origin/${env.BRANCH_NAME} --commit"
+                "${env.BATCH_COMMAND}" "git push origin main"
             }
             break
         case Constants.STAGE_GITMERGEDEVELOP:
             stage(Constants.STAGE_GITMERGEDEVELOP){
-                bat "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop"
-                bat "git fetch --all"
-                bat "git checkout develop"
-                bat "git merge origin/${env.BRANCH_NAME} --commit"
-                bat "git push origin develop"
+                "${env.BATCH_COMMAND}" "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop"
+                "${env.BATCH_COMMAND}" "git fetch --all"
+                "${env.BATCH_COMMAND}" "git checkout develop"
+                "${env.BATCH_COMMAND}" "git merge origin/${env.BRANCH_NAME} --commit"
+                "${env.BATCH_COMMAND}" "git push origin develop"
             }
             break
         case Constants.STAGE_GITTAGMASTER:
