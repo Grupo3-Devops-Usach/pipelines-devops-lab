@@ -1,5 +1,5 @@
 import com.util.Constants
-
+// funcion para listar stages validos
 def execute(stages_list){
     def iStages = stages_list.split(Constants.SPLIT_SYMBOL)
     def valid_stages = util.validStages(env.PIPELINE_TYPE)
