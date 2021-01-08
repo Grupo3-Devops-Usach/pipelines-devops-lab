@@ -14,6 +14,9 @@ def call()
     Number var_newrelease = 0
 
     var_version = readFile(archivo);
+
+    println "Release Version: ${var_version}"
+
     var_largo = var_version.length();
     var_inversa = var_version.reverse();
     var_pos = var_inversa.indexOf('-');
