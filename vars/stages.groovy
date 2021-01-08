@@ -44,13 +44,11 @@ def call(){
         case Constants.STAGE_GITCREATERELEASE:
             if(util.isDevelopBranch(env.BRANCH_NAME)){
                 stage(Constants.STAGE_GITCREATERELEASE){
-                    def merge = bat (script: "git show -s --pretty=%%P", returnStdout: true)
-                    def releaseBranch = 'release-v1-0-0'
+                    def release = release_upgrade.call()
+                    def releaseName = "release-v${release}"
 
-                    println merge
-                    println merge.split("\\s").size()
-                    //bat "git checkout -b ${releaseBranch} ${env.GIT_COMMIT_SHORT}"
-                    //bat "git push origin ${releaseBranch}"
+                    bat "git checkout -b ${releaseName} ${env.GIT_COMMIT_SHORT}"
+                    bat "git push origin ${releaseName}"
                 }
             }
             break
@@ -97,6 +95,7 @@ def call(){
             break
         case Constants.STAGE_GITTAGMASTER:
             stage(Constants.STAGE_GITTAGMASTER){
+                
             }
             break
         default:
