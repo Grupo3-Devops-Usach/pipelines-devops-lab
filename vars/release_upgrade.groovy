@@ -1,6 +1,6 @@
 def call()
 {
-	def archivo = "resources/versiones.txt"
+	def archivo = "versiones.txt"
 
 	String var_version    = ''
     String var_inversa    = ''
