@@ -73,7 +73,7 @@ def call(){
             break
         case Constants.STAGE_TEST:
             stage(Constants.STAGE_TEST){
-                sleep 10
+                sleep 20
                 "${env.BATCH_COMMAND}" 'curl http://localhost:8082/rest/mscovid/estadoMundial'
                 "${env.BATCH_COMMAND}" 'curl http://localhost:8082/rest/mscovid/test?msg=testing'
             }
