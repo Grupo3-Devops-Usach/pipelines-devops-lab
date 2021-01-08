@@ -1,6 +1,6 @@
 def call()
 {
-	def archivo = "versiones.txt"
+	def archivo =readFile('versiones.txt')
 
 	String var_version    = ''
     String var_inversa    = ''
