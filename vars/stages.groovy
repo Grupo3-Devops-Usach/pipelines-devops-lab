@@ -68,7 +68,7 @@ def call(){
             break
         case Constants.STAGE_RUN:
             stage(Constants.STAGE_RUN){
-                "${env.BATCH_COMMAND}" 'nohup java -jar DevOpsUsach2020-0.0.1.jar'
+                "${env.BATCH_COMMAND}" 'nohup java -jar DevOpsUsach2020-0.0.1.jar &'
             }
             break
         case Constants.STAGE_TEST:
