@@ -47,7 +47,7 @@ def call(){
                     def release = release_upgrade.call()
                     def releaseName = "release-v${release}"
 
-                    println "Release Branch: ${var_version}"
+                    println "Release Branch: ${releaseName}"
 
                     bat "git checkout -b ${releaseName} develop"
                     bat "git push origin ${releaseName}"
