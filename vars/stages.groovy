@@ -97,6 +97,11 @@ def call(){
             break
         case Constants.STAGE_GITTAGMASTER:
             stage(Constants.STAGE_GITTAGMASTER){
+              var_version = new File(archivo).getText('UTF-8');
+              "${env.BATCH_COMMAND}" "git config --add remote.origin.fetch +refs/heads/develop:refs/remotes/origin/develop";
+              "${env.BATCH_COMMAND}" "git checkout main"
+              "${env.BATCH_COMMAND}" "git tag " + var_version + "-m 'Versión ${var_version}'";
+              "${env.BATCH_COMMAND}" "git push --tags";
             }
             break
         default:
