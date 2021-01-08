@@ -26,14 +26,14 @@ def call()
     var_nropos = var_nropos + 1;    
     var_newversion = var_version.substring(0, (var_largo-var_nropos)) + '-' + var_newrelease;
 
-    println "Release Nueva Version: ${var_version}"
+    println "Release Nueva Version: ${var_newversion}"
 
     File file_update = new File(archivo)
     file_update.write(var_newversion);
 
     nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'txt', filePath: 'DevOpsUsach2020-1.0.txt']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'txt', version: '1.0']]]
 
-    return archivo;
+    return var_newversion;
 }
 
 return this
