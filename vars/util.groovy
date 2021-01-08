@@ -62,7 +62,9 @@ def buildTool(){
         tool = Constants.MAVEN;
     }
 
-    println "Build Tool [${tool}]"
+    //println "Build Tool [${tool}]"
+
+    figlet "${tool}"
 
     return tool
 }
@@ -72,11 +74,13 @@ def pipelineType(branch_name){
 
     if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
         pipeline_type = Constants.IC
+        figlet "Integración Contínua"
     } else if(branch_name ==~ /^release-v\d{1,}-\d{1,}-\d{1,}$/){
         pipeline_type = Constants.RELEASE
+        figlet "Despliegue Contínuo"
     }
 
-    println "Pipeline Type [${pipeline_type}]"
+    //println "Pipeline Type [${pipeline_type}]"
 
     return pipeline_type
 }
