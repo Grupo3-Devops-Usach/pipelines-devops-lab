@@ -22,7 +22,7 @@ def call(){
             break
         case Constants.STAGE_JAR:
             stage(Constants.STAGE_JAR){
-                bat 'mvnw.cmd clean package -e'
+                bat 'mvn clean package -e'
             }
             break
         case Constants.STAGE_SONAR:
