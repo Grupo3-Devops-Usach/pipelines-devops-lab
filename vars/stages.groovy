@@ -63,7 +63,7 @@ def call(){
             break
         case Constants.STAGE_NEXUSDOWNLOAD:
             stage(Constants.STAGE_NEXUSDOWNLOAD){
-                "${env.BATCH_COMMAND}" 'curl -X GET -u admin:P@ssw0rd2201 http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
+                "${env.BATCH_COMMAND}" 'curl -X GET -u admin:admin http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
             }
             break
         case Constants.STAGE_RUN:
