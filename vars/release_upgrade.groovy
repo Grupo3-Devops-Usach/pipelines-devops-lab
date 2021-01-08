@@ -15,7 +15,7 @@ def call()
 
     var_version = readFile(archivo);
 
-    println "Release Version: ${var_version}"
+    println "Release Version Actual: ${var_version}"
 
     var_largo = var_version.length();
     var_inversa = var_version.reverse();
@@ -25,6 +25,8 @@ def call()
     var_newrelease = var_release.toInteger() + 1;
     var_nropos = var_nropos + 1;    
     var_newversion = var_version.substring(0, (var_largo-var_nropos)) + '-' + var_newrelease;
+
+    println "Release Nueva Version: ${var_version}"
 
     File file_update = new File(archivo)
     file_update.write(var_newversion);

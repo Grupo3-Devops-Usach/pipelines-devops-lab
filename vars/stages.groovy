@@ -47,7 +47,9 @@ def call(){
                     def release = release_upgrade.call()
                     def releaseName = "release-v${release}"
 
-                    bat "git checkout -b ${releaseName} ${env.GIT_COMMIT_SHORT}"
+                    println "Release Branch: ${var_version}"
+
+                    bat "git checkout -b ${releaseName} develop"
                     bat "git push origin ${releaseName}"
                 }
             }
