@@ -31,9 +31,9 @@ def call(){
                 def projectName = "${repoName}-${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 def scannerHome = tool 'sonar-scanner';
 
-                withSonarQubeEnv('sonar') {
+
                     "${env.BATCH_COMMAND}" "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${projectName} -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build -Dsonar.login=75a0e9b0613f563c0e69a23174cf79eb5d4d74c7"
-                }
+                
             }
             break
         case Constants.STAGE_NEXUSUPLOAD:
