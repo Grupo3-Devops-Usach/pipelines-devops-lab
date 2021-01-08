@@ -13,7 +13,7 @@ def call()
     String var_release    = ''
     Number var_newrelease = 0
 
-    var_version = new File(archivo).getText('UTF-8');
+    var_version = readFile(archivo).getText('UTF-8');
     var_largo = var_version.length();
     var_inversa = var_version.reverse();
     var_pos = var_inversa.indexOf('-');
