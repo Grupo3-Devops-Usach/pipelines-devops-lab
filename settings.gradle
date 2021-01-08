@@ -7,5 +7,9 @@
  * in the user manual at https://docs.gradle.org/6.7/userguide/multi_project_builds.html
  */
 
+<<<<<<< HEAD
 rootProject.name = 'pipeline-devops-pruebas'
 include('lib')
+=======
+rootProject.name = 'pipelines-devops-lab'
+>>>>>>> fetature-inicial
