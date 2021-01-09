@@ -30,7 +30,7 @@ def call()
 
     writeFile(file: archivo, text: var_newversion, encoding: "UTF-8")
 
-    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'txt', filePath: 'DevOpsUsach2020-1.0.txt']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'txt', version: '1.0']]]
+    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'txt', filePath: 'DevOpsUsach2020-1.0.txt']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'devopsusach2020', packaging: 'txt', version: '1.0']]]
 
     return var_newversion;
 }
