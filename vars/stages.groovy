@@ -99,7 +99,7 @@ def call(){
             stage(Constants.STAGE_GITTAGMASTER){
                 "${env.BATCH_COMMAND}" "git checkout main"
                 "${env.BATCH_COMMAND}" "git fetch --all"
-                "${env.BATCH_COMMAND}" "git tag -a v3-0-2 -m \"Nueva version v3-0-2\""
+                "${env.BATCH_COMMAND}" "git push origin v3-0-2"
             }
             break
         default:
