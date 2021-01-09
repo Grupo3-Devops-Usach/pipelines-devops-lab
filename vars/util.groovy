@@ -99,3 +99,9 @@ def getRepoName(url){
 
     return repoName
 }
+
+def setTag(branch_name){ //release-v3-0-3
+    def tagName = url.split("v")[1]
+
+    return "v${tagName}"
+}
