@@ -97,9 +97,13 @@ def call(){
             break
         case Constants.STAGE_GITTAGMASTER:
             stage(Constants.STAGE_GITTAGMASTER){
+                def tag = util.setTag(env.BRANCH_NAME)
+
+                println "Tag Main: ${tag}"
+
                 "${env.BATCH_COMMAND}" "git checkout main"
                 "${env.BATCH_COMMAND}" "git fetch --all"
-                "${env.BATCH_COMMAND}" "git push origin v3-0-2"
+                "${env.BATCH_COMMAND}" "git push origin ${tag}"
             }
             break
         default:
