@@ -29,14 +29,6 @@ def call(){
                         println "Valid Stages: ${env.VALID_STAGES}" 
                         
                         pipelines.execute(params.STAGE)
-                        
-
-                        //Validar tipo de rama a ejecutar develop, feature, release
-                        //develop, feature deben ejecutar pipeline IC
-                        //release ejecuta pipeline CD
-                            
-                            //Validar si debe ejecutar gradle o maven
-
                     }
                 }
             }
