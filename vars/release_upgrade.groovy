@@ -24,7 +24,7 @@ def call()
     File file_update = new File(archivo)
     file_update.write(var_newversion);
 
-    return archivo;
+    return var_newversion;
 }
 
 return this
