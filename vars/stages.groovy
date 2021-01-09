@@ -103,6 +103,7 @@ def call(){
 
                 "${env.BATCH_COMMAND}" "git checkout main"
                 "${env.BATCH_COMMAND}" "git fetch --all"
+                "${env.BATCH_COMMAND}" "git tag ${tag}"
                 "${env.BATCH_COMMAND}" "git push origin ${tag}"
             }
             break
