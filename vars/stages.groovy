@@ -49,8 +49,8 @@ def call(){
 
                     println "Release Branch: ${releaseName}"
 
-                    bat "git checkout -b ${releaseName} develop"
-                    bat "git push origin ${releaseName}"
+                    "${env.BATCH_COMMAND}" "git checkout -b ${releaseName}"
+                    "${env.BATCH_COMMAND}" "git push origin ${releaseName}"
                 }
             }
             break
